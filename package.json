@@ -1,0 +1,27 @@
+{
+  "name": "homework",
+  "version": "1.0.0",
+  "description": "NodeJS Mentoring program: homework_1",
+  "main": "task1.js",
+  "scripts": {
+    "task1": "nodemon task1.js",
+    "task2": "nodemon task2.js"
+  },
+  "author": "Maxim Gorbunov",
+  "license": "EPAM",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "csvtojson": "^2.0.10"
+  },
+  "devDependencies": {
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.2.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "csv/*"
+    ]
+  }
+}
