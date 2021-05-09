@@ -5,13 +5,13 @@ const readline = require('readline').createInterface({
 
 const terminatingCommand = "exit";
 
-var waitForUserInput = function () {
+let waitForUserInput = function () {
     readline.question(`Enter string to reverse or type '${terminatingCommand}' to quit program: `, inputString => {
         if (inputString === terminatingCommand) {
             readline.close();
             process.exit();
         } else {
-            var outputString = inputString.split("").reverse().join("");
+            let outputString = inputString.split("").reverse().join("");
             console.log(`Reversed string: ${outputString}`);
             waitForUserInput();
         }
