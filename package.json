@@ -2,10 +2,13 @@
   "name": "homework",
   "version": "1.0.0",
   "description": "NodeJS Mentoring program: homework_1",
-  "main": "task1.js",
+  "main": "commonjs_approach/task1.cjs",
+  "type": "module",
   "scripts": {
-    "task1": "nodemon task1.js",
-    "task2": "nodemon task2.js"
+    "task1": "nodemon commonjs_approach/task1.cjs",
+    "task2": "nodemon commonjs_approach/task2.cjs",
+    "task3": "nodemon ecmascript_approach/task3_1.js",
+    "task4": "nodemon ecmascript_approach/task3_2.js"
   },
   "author": "Maxim Gorbunov",
   "license": "EPAM",
@@ -14,6 +17,10 @@
     "csvtojson": "^2.0.10"
   },
   "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.14.1",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",

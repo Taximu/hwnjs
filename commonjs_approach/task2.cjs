@@ -4,7 +4,7 @@ const util = require('util');
 const pipeline = util.promisify(stream.pipeline);
 const csv = require('csvtojson');
 const fs = require('fs');
-const csvFilePath = require('path').join(__dirname, './csv/data.csv');
+const csvFilePath = require('path').join(__dirname, '../csv/data.csv');
 const readableStream = fs.createReadStream(csvFilePath);
 
 let writeToFile = function(json) {
