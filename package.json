@@ -8,22 +8,22 @@
     "task1": "nodemon commonjs_approach/task1.cjs",
     "task2": "nodemon commonjs_approach/task2.cjs",
     "task3": "nodemon ecmascript_approach/task3_1.js",
-    "task4": "nodemon ecmascript_approach/task3_2.js"
+    "task4": "nodemon ecmascript_approach/task3_2.js",
+    "lint": "eslint . --ext js,cjs",
+    "lint-fix": "eslint . --ext js,cjs --fix",
+    "format": "prettier . --write"
   },
   "author": "Maxim Gorbunov",
   "license": "EPAM",
   "dependencies": {
-    "csv-parser": "^3.0.0",
     "csvtojson": "^2.0.10"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.16",
-    "@babel/core": "^7.14.0",
-    "@babel/node": "^7.13.13",
-    "@babel/preset-env": "^7.14.1",
     "eslint": "^7.25.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.4.0",
+    "nodemon": "^2.0.7",
     "prettier": "^2.2.1"
   },
   "nodemonConfig": {

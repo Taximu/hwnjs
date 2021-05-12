@@ -1,10 +1,17 @@
 {
-    "extends": ["airbnb-base", "plugin:prettier/recommended"],
-    "plugins": ["prettier"],
-    "parserOptions": {
-      "ecmaVersion": 2018
-    },
-    "rules": {
-      "prettier/prettier": "error"
-    }
+  "extends": ["airbnb-base"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "linebreak-style": ["error", "windows"],
+    "no-console": "off"
   }
+}
