@@ -1,12 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
-// eslint-disable-next-line import/no-extraneous-dependencies
-// eslint-disable-next-line import/no-unresolved
-import { object, string } from 'joi';
+import Joi from 'joi';
 
-const JoiSchema = object({
-  age: string().required().normalize(),
+const JoiSchema = Joi.object({
+  age: Joi.string().required().normalize(),
 
-  login: string().required().email().normalize(),
+  login: Joi.string().required().email().normalize(),
 }).options({ abortEarly: true });
 
 const updateValidator = (req, _res, next) => {
@@ -23,5 +20,4 @@ const updateValidator = (req, _res, next) => {
     next();
   }
 };
-
-module.exports = updateValidator;
+export default updateValidator;

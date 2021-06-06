@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import {
   createUser,
   getUserById,
@@ -9,7 +8,7 @@ import {
 import creationValidator from '../services/creationValidator.js';
 import updateValidator from '../services/updateValidator.js';
 
-module.exports = (app) => {
+export default (app) => {
   // Create a new user
   app.post('/users', creationValidator, createUser);
 

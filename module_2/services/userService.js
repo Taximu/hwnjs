@@ -1,6 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-extraneous-dependencies */
-// eslint-disable-next-line import/no-unresolved
 import sortArray from 'sort-array';
 import usersModel from '../models/users.data.js';
 
@@ -58,7 +55,7 @@ function deleteUserById(id) {
   console.log(user);
 }
 
-module.exports = {
+export {
   create,
   findUserInCollection,
   findById,

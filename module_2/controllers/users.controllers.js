@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import {
   create,
   findById,
@@ -37,10 +36,4 @@ function deleteUser(req, res) {
   res.send('User was deleted');
 }
 
-module.exports = {
-  createUser,
-  getUserById,
-  getUsers,
-  updateUser,
-  deleteUser,
-};
+export { createUser, getUserById, getUsers, updateUser, deleteUser };

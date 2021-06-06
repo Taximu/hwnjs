@@ -1,22 +1,20 @@
-/* eslint-disable import/no-extraneous-dependencies */
-// eslint-disable-next-line import/no-unresolved
-import { object, string } from 'joi';
+import Joi from 'joi';
 
-const JoiSchema = object({
-  id: string().required().normalize(),
+const JoiSchema = Joi.object({
+  id: Joi.string().required().normalize(),
 
-  login: string().required().email().normalize(),
+  login: Joi.string().required().email().normalize(),
 
-  password: string()
+  password: Joi.string()
     .min(16)
     .max(32)
     .required()
     .pattern(new RegExp('^[a-zA-Z0-9]{16,30}$'))
     .normalize(),
 
-  age: string().required().normalize(),
+  age: Joi.string().required().normalize(),
 
-  isDeleted: string().required().normalize(),
+  isDeleted: Joi.string().required().normalize(),
 }).options({ abortEarly: false });
 
 const creationValidator = (req, _res, next) => {
@@ -34,4 +32,4 @@ const creationValidator = (req, _res, next) => {
   }
 };
 
-module.exports = creationValidator;
+export default creationValidator;
