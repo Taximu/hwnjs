@@ -1,9 +1,10 @@
 import express, { json } from 'express';
-import routes from './api-routes/users.routes.js';
+import usersRouter from './api-routes/usersRoutes.js'
 
 const app = express();
+
 app.use(json());
-routes(app);
+app.use('/user', usersRouter);
 
 app.get('/', (_req, res) => {
   res.json({
