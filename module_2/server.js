@@ -1,14 +1,10 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-extraneous-dependencies
 import express, { json } from 'express';
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/extensions
-import routes from './api-routes/users.routes.js';
+import usersRouter from './api-routes/usersRoutes.js'
 
 const app = express();
+
 app.use(json());
-routes(app);
+app.use('/user', usersRouter);
 
 app.get('/', (_req, res) => {
   res.json({
