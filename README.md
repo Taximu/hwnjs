@@ -8,3 +8,4 @@
 
 4. npm run task1
 5. npm run task2
+6. node server.js (Test endpoints via POSTMAN)
