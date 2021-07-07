@@ -1,24 +1,22 @@
-import usersModel from '../models/usersData.js';
-import dtoServicefindAllAsync from '../data-access/userDtoService.js';
+import {
+  createAsync,
+  findByIdAsync,
+  findAllAsync,
+} from '../data-access/userDtoService.js';
 
-export const create = (user) => {
-  usersModel.push(user);
+export const create = async (userData) => {
+  const result = await createAsync(userData);
+  console.log(result);
 };
 
-export const findById = (id) => {
-  const user = dtoServicefindAllAsync();
-  console.log(`"User is: " ${user.rows}`); //usersModel.find((element) => element.id === id);
+export const findById = async (id) => {
+  const user = await findByIdAsync(id);
   return user;
 };
 
-export const findAll = (loginSubstring, limit) => {
-  const array = usersModel.filter(
-    (elem) =>
-      typeof elem.login === 'string' && elem.login.indexOf(loginSubstring) > -1,
-  );
-  return array
-    .slice(0, limit)
-    .sort((o1, o2) => o1.login.localeCompare(o2.login));
+export const findAll = async (loginSubstring, limit) => {
+  const users = await findAllAsync(loginSubstring, limit);
+  return users;
 };
 
 export const update = (id, user) => {

@@ -11,13 +11,13 @@ export const createUser = (req, res) => {
   res.send('User was created');
 };
 
-export const getUserById = (req, res) => {
-  const user = findById(req.params.userId);
+export const getUserById = async (req, res) => {
+  const user = await findById(req.params.userId);
   res.send(user);
 };
 
-export const getUsers = (req, res) => {
-  const users = findAll(req.query.loginSubstring, req.query.limit);
+export const getUsers = async (req, res) => {
+  const users = await findAll(req.query.loginSubstring, req.query.limit);
   res.send(users);
 };
 

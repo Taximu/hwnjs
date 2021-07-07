@@ -1,20 +1,39 @@
 import Sequelize from 'sequelize';
-import User from '../models/usersData.js';
+import user from '../models/usersData.js';
 import dotEnv from 'dotenv';
 
-const findAllAsync = async () => {
-  dotEnv.config();
-  const sequelize = new Sequelize(`${process.env.DB_NAME}`);
+dotEnv.config();
+export const sequelize = new Sequelize(
+  `${process.env.DB_NAME}`,
+  `${process.env.DB_USERNAME}`,
+  `${process.env.DB_PASSWORD}`,
+  {
+    host: `${process.env.DB_HOST}`,
+    dialect: `${process.env.DB_DIALECT}`,
+  },
+);
 
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
+const Op = Sequelize.Op;
 
-  const users = await User.findAll();
-  console.log('All users:', JSON.stringify(users, null, 2));
+export const createAsync = async (userData) => {
+  const result = await user.create(userData);
 };
 
-export default findAllAsync;
+export const findByIdAsync = async (userId) => {
+  const result = await user.findByPk(userId);
+  console.log(JSON.stringify(result, null, 2));
+  return JSON.stringify(result, null, 2);
+};
+
+export const findAllAsync = async (loginSubstring, limit) => {
+  const users = await user.findAll({
+    limit: parseInt(limit),
+    where: {
+      login: {
+        [Op.like]: `%${loginSubstring}%`,
+      },
+    },
+    order: [['login', 'ASC']],
+  });
+  return JSON.stringify(users, null, 2);
+};

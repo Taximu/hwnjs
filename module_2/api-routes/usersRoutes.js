@@ -7,7 +7,7 @@ import {
 } from '../controllers/usersControllers.js';
 import creationValidator from '../middleware/creationValidator.js';
 import updateValidator from '../middleware/updateValidator.js';
-import express from 'express'
+import express from 'express';
 
 const router = express.Router();
 

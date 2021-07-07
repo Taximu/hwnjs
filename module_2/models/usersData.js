@@ -1,23 +1,32 @@
-import pkg from 'sequelize';
-const { Sequelize, DataTypes } = pkg;
+import DataTypes from 'sequelize';
+import { sequelize } from '../data-access/userDtoService.js';
 
-const User = Sequelize.define('User', {
-  ID: {
-    type: DataTypes.UUIDV4,
-    allowNull: false,
+const user = sequelize.define(
+  'User',
+  {
+    id: {
+      type: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
+    },
+    login: {
+      type: DataTypes.STRING(50),
+    },
+    password: {
+      type: DataTypes.STRING(50),
+    },
+    age: {
+      type: DataTypes.INTEGER,
+    },
+    isDeleted: {
+      type: DataTypes.SMALLINT,
+    },
   },
-  login: {
-    type: DataTypes.STRING(50),
+  {
+    timestamps: false,
+    tableName: 'tblUser',
+    freezeTableName: false,
   },
-  password: {
-    type: DataTypes.STRING(50),
-  },
-  age: {
-    type: DataTypes.INTEGER,
-  },
-  isDeleted: {
-    type: DataTypes.BOOLEAN,
-  },
-});
+);
 
-export default User;
+export default user;
