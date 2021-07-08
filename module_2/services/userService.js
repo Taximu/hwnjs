@@ -2,11 +2,13 @@ import {
   createAsync,
   findByIdAsync,
   findAllAsync,
+  updateAsync,
+  deleteAsync,
 } from '../data-access/userDtoService.js';
 
 export const create = async (userData) => {
   const result = await createAsync(userData);
-  console.log(result);
+  return result;
 };
 
 export const findById = async (id) => {
@@ -19,13 +21,12 @@ export const findAll = async (loginSubstring, limit) => {
   return users;
 };
 
-export const update = (id, user) => {
-  const existingUser = findById(id);
-  existingUser.login = user.login;
-  existingUser.age = user.age;
+export const update = async (id, user) => {
+  const result = await updateAsync(id, user);
+  return result;
 };
 
-export const deleteUserById = (id) => {
-  const user = findById(id);
-  user.isDeleted = 'true';
+export const deleteUserById = async (id) => {
+  const result = await deleteAsync(id);
+  return result;
 };

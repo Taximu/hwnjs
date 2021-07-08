@@ -1,39 +1,52 @@
 import Sequelize from 'sequelize';
-import user from '../models/usersData.js';
-import dotEnv from 'dotenv';
-
-dotEnv.config();
-export const sequelize = new Sequelize(
-  `${process.env.DB_NAME}`,
-  `${process.env.DB_USERNAME}`,
-  `${process.env.DB_PASSWORD}`,
-  {
-    host: `${process.env.DB_HOST}`,
-    dialect: `${process.env.DB_DIALECT}`,
-  },
-);
-
-const Op = Sequelize.Op;
+import User from '../models/usersData.js';
 
 export const createAsync = async (userData) => {
-  const result = await user.create(userData);
+  const result = await User.create(userData);
+  return result;
 };
 
 export const findByIdAsync = async (userId) => {
-  const result = await user.findByPk(userId);
-  console.log(JSON.stringify(result, null, 2));
-  return JSON.stringify(result, null, 2);
+  const result = await User.findByPk(userId);
+  return result;
 };
 
 export const findAllAsync = async (loginSubstring, limit) => {
-  const users = await user.findAll({
-    limit: parseInt(limit),
-    where: {
-      login: {
-        [Op.like]: `%${loginSubstring}%`,
-      },
-    },
+  let whereCondition =
+    loginSubstring !== undefined
+      ? { login: { [Sequelize.Op.like]: `%${loginSubstring}%` } }
+      : { login: { [Sequelize.Op.like]: `%@%` } };
+
+  let limitValue = limit !== undefined ? parseInt(limit) : 10;
+
+  const users = await User.findAll({
+    limit: limitValue,
+    where: whereCondition,
     order: [['login', 'ASC']],
   });
-  return JSON.stringify(users, null, 2);
+  return users;
+};
+
+export const updateAsync = async (userId, userData) => {
+  const result = await User.update(
+    { login: userData.login, age: userData.age },
+    {
+      where: {
+        id: userId,
+      },
+    },
+  );
+  return result;
+};
+
+export const deleteAsync = async (userId) => {
+  const result = await User.update(
+    { isDeleted: true },
+    {
+      where: {
+        id: userId,
+      },
+    },
+  );
+  return result;
 };

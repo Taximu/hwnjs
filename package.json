@@ -36,6 +36,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^7.0.1",
     "lint-staged": "^11.0.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1"
@@ -45,5 +46,9 @@
       "csv/*"
     ]
   },
-  "NODE_ENV": "development"
+  "husky": {
+    "hooks": {
+      "pre-commit": "prettier --write . && git add -A ."
+    }
+  }
 }
