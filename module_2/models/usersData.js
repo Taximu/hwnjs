@@ -1,5 +1,5 @@
 import DataTypes from 'sequelize';
-import { sequelize } from '../services/util.js';
+import sequelize from '../services/util.js';
 
 const user = sequelize.define(
   'User',
@@ -11,6 +11,9 @@ const user = sequelize.define(
     },
     login: {
       type: DataTypes.STRING(50),
+      unique: true,
+      allowNull: false,
+      validate: { isEmail: true },
     },
     password: {
       type: DataTypes.STRING(50),
@@ -20,6 +23,7 @@ const user = sequelize.define(
     },
     isDeleted: {
       type: DataTypes.SMALLINT,
+      defaultValue: false,
     },
   },
   {

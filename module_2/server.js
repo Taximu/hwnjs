@@ -1,10 +1,8 @@
 import express, { json } from 'express';
 import usersRouter from './api-routes/usersRoutes.js';
-import env from 'dotenv';
 
 const app = express();
 
-env.config();
 app.use(json());
 app.use('/user', usersRouter);
 

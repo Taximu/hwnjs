@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 import dotEnv from 'dotenv';
 
 dotEnv.config();
-export const sequelize = new Sequelize(
+const sequelize = new Sequelize(
   `${process.env.DB_NAME}`,
   `${process.env.DB_USERNAME}`,
   `${process.env.DB_PASSWORD}`,
@@ -11,3 +11,5 @@ export const sequelize = new Sequelize(
     dialect: `${process.env.DB_DIALECT}`,
   },
 );
+
+export default sequelize;

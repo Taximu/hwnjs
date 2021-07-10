@@ -11,16 +11,13 @@ export const findByIdAsync = async (userId) => {
   return result;
 };
 
-export const findAllAsync = async (loginSubstring, limit) => {
-  let whereCondition =
-    loginSubstring !== undefined
-      ? { login: { [Sequelize.Op.like]: `%${loginSubstring}%` } }
-      : { login: { [Sequelize.Op.like]: `%@%` } };
-
-  let limitValue = limit !== undefined ? parseInt(limit) : 10;
+export const findAllAsync = async (loginSubstring, limit = 10) => {
+  const whereCondition = loginSubstring
+    ? { login: { [Sequelize.Op.like]: `%${loginSubstring}%` } }
+    : { login: { [Sequelize.Op.like]: `%@%` } };
 
   const users = await User.findAll({
-    limit: limitValue,
+    limit: parseInt(limit, 10),
     where: whereCondition,
     order: [['login', 'ASC']],
   });

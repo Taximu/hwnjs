@@ -8,47 +8,45 @@ import {
 
 export const createUser = async (req, res) => {
   const result = await create(req.body);
-  if (result != null) {
+  if (result) {
     res.send(result);
   } else {
-    res.send(JSON.stringify('User was not created.'));
+    res.status(404).send('User was not created');
   }
 };
 
 export const getUserById = async (req, res) => {
   const user = await findById(req.params.userId);
-  if (user != null) {
+  if (user) {
     res.send(user);
   } else {
-    res.send(
-      JSON.stringify(`User with id: ${req.params.userId} was not found.`),
-    );
+    res.status(404).send(`User with id: ${req.params.userId} was not found`);
   }
 };
 
 export const getUsers = async (req, res) => {
   const users = await findAll(req.query.loginSubstring, req.query.limit);
-  if (users != null) {
+  if (users) {
     res.send(users);
   } else {
-    res.send(JSON.stringify('No users found'));
+    res.status(404).send('User was not created');
   }
 };
 
 export const updateUser = async (req, res) => {
   const result = await update(req.params.userId, req.body);
-  if (result == 1) {
+  if (result) {
     res.send(JSON.stringify('User was updated'));
   } else {
-    res.send(JSON.stringify('Something went wrong'));
+    res.status(404).send('Something went wrong');
   }
 };
 
 export const deleteUser = async (req, res) => {
   const result = await deleteUserById(req.params.userId);
-  if (result == 1) {
+  if (result) {
     res.send(JSON.stringify('User was deleted'));
   } else {
-    res.send(JSON.stringify('Something went wrong'));
+    res.status(404).send('Something went wrong');
   }
 };

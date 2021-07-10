@@ -10,10 +10,10 @@ const JoiSchema = Joi.object({
     .pattern(new RegExp('^[a-zA-Z0-9]{16,30}$'))
     .normalize(),
   age: Joi.string().required().normalize(),
-  isDeleted: Joi.string().required().normalize(),
 }).options({ abortEarly: false });
 
 const creationValidator = (req, _res, next) => {
+  delete req.body.isDeleted;
   const result = JoiSchema.validate(req.body);
   const { error } = result;
   const valid = error == null;
