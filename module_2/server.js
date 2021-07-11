@@ -1,5 +1,5 @@
 import express, { json } from 'express';
-import usersRouter from './api-routes/usersRoutes.js'
+import usersRouter from './api-routes/usersRoutes.js';
 
 const app = express();
 
@@ -9,7 +9,7 @@ app.use('/user', usersRouter);
 app.get('/', (_req, res) => {
   res.json({
     message:
-      'Welcome to module#2 which demonstrates how to work with CRUD operations in Node.JS.',
+      'Welcome to module#3 which demonstrates how to work with CRUD operations in Node.JS.',
   });
 });
 
