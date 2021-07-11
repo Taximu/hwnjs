@@ -13,10 +13,14 @@ const user = sequelize.define(
       type: DataTypes.STRING(50),
       unique: true,
       allowNull: false,
+      validate: { isEmail: true },
     },
     password: {
       type: DataTypes.STRING(50),
       allowNull: false,
+      validate: {
+        is: ['^[a-zA-Z0-9]{16,30}$', 'i'],
+      },
     },
     age: {
       type: DataTypes.INTEGER,
